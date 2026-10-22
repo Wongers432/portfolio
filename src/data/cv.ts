@@ -30,6 +30,9 @@ export const places: Place[] = [
   { name: 'Canada', lat: 51.05, lon: -114.07, tag: 'road trips' },
   { name: 'Scotland', lat: 56.49, lon: -4.2, tag: 'road trips' },
   { name: 'China', lat: 30.57, lon: 104.07, tag: 'backpacking' },
+  { name: 'Hong Kong', lat: 22.32, lon: 114.17, tag: 'backpacking' },
+  { name: 'Paris', lat: 48.86, lon: 2.35, tag: 'holiday' },
+  { name: 'Belgium', lat: 50.85, lon: 4.35, tag: 'holiday' },
 ];
 
 export type Project = {
@@ -181,7 +184,7 @@ export const skills = [
 ];
 
 export const beyond = [
-  { title: 'Travel', text: 'Backpacking in mainland China, and road trips across Canada and Scotland.' },
+  { title: 'Travel', text: 'Backpacking in mainland China and Hong Kong, road trips across Canada and Scotland, and holidays in Paris and Belgium.' },
   { title: 'Animal-care programme, China', text: 'Selected for a competitive placement.' },
   { title: 'Bournemouth Writing Festival', text: 'Runner for two consecutive years.' },
   { title: 'Foodbank hamper appeal', text: 'Helped plan and distribute goods to the community.' },

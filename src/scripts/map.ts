@@ -77,9 +77,8 @@ if (canvas) {
     places.forEach((p) => {
       if (p.label === false) return;
       const [px, py] = P(p.lat, p.lon);
-      // Bournemouth's label goes below its pin to stay clear of Scotland's.
       const off: [number, number] =
-        p.name === 'Bournemouth' ? [s + 4, nameSize + 6] : [s + 5, 4];
+        p.name === 'Bournemouth' ? [s + 4, nameSize + 6] : p.name === 'Paris' ? [s + 3, nameSize + 6] : p.name === 'Belgium' ? [s + 5, 0] : [s + 5, 4];
       ctx.font = `600 ${nameSize}px ${body}`;
       // Names only; the list under the map carries the detail.
       const tag = '';
@@ -89,6 +88,10 @@ if (canvas) {
       let y = py + off[1];
       // Scotland's label sits centred above its pin, over the sea, so it never covers the UK.
       if (p.name === 'Scotland') { x = px - tw / 2; y = py - s - 6 - (tag ? tagSize + 3 : 0); }
+      // Bournemouth and Paris are close together: Bournemouth's label goes left, Paris's right.
+      if (p.name === 'Bournemouth') { x = px - s - 5 - tw; y = py + nameSize + 4; }
+      // Hong Kong's label goes under its pin, so on phones it doesn't flip left onto Abu Dhabi's.
+      if (p.name === 'Hong Kong') { x = Math.min(px - tw / 2, w - tw - 4); y = py + s + nameSize + 4; }
       // A ground-coloured plate keeps labels legible over land and routes.
       ctx.fillStyle = css('--ground');
       ctx.globalAlpha = 0.85;
