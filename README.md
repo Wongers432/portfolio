@@ -26,7 +26,7 @@ When an app is deployed, set its `liveUrl` (the "Open full app" button) and `dem
 
 `vercel.json` sends a strict Content-Security-Policy (no inline scripts or styles, fonts self-hosted), HSTS, and the usual hardening headers. Check the result at [securityheaders.com](https://securityheaders.com) after deploying.
 
-If you embed an app in the "Try it here" frame, its domain must be allowed in `frame-src` here (`*.vercel.app` is allowed now), and the app itself must allow the portfolio in its own `frame-ancestors` header.
+If you embed an app in the "Try it here" frame, its domain must be allowed in `frame-src` here (the two current app addresses are listed there now), and the app itself must allow the portfolio in its own `frame-ancestors` header.
 
 `public/.well-known/security.txt` follows [RFC 9116](https://www.rfc-editor.org/rfc/rfc9116). Renew its `Expires` date each year.
 

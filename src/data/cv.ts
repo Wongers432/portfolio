@@ -55,8 +55,8 @@ export const projects: Project[] = [
       "A solo, offline 2D take on Hypixel SkyBlock's Catacombs for iPhone. Random dungeons, puzzles, secrets and seven bosses from Bonzo to the Wither Lords.",
     tags: ['TypeScript', 'Vite PWA', 'Vitest'],
     repo: 'https://github.com/Wongers432/skyblock-dungeons',
-    liveUrl: null,
-    demoUrl: null,
+    liveUrl: 'https://skyblock-dungeons.vercel.app/',
+    demoUrl: 'https://skyblock-dungeons.vercel.app/',
     startLabel: 'Press start',
     facts: [
       { k: 'Stack', v: 'TypeScript, Vite, vite-plugin-pwa, Vitest' },
@@ -86,8 +86,8 @@ export const projects: Project[] = [
       'A gym tracker that installs to the home screen and works with no signal. Log maxes for 58 exercises and climb from Bronze to Champion.',
     tags: ['Vanilla JS', 'Chart.js', 'Offline-first'],
     repo: 'https://github.com/Wongers432/liftboard',
-    liveUrl: null,
-    demoUrl: null,
+    liveUrl: 'https://gt-sigma-ten.vercel.app/',
+    demoUrl: 'https://gt-sigma-ten.vercel.app/',
     startLabel: 'Load save',
     facts: [
       { k: 'Stack', v: 'HTML, CSS, JavaScript, Chart.js, service worker' },
