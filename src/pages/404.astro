@@ -1,10 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
-import MiniHeader from '../components/MiniHeader.astro';
+import TopBar from '../components/TopBar.astro';
 ---
 <Base title="Page not found · Oliver Wong">
+  <TopBar home={false} />
   <div class="page">
-    <MiniHeader />
     <main id="main" class="nf">
       <span class="label">404 · 0.00°N 0.00°E</span>
       <h1>Page not found</h1>
@@ -14,7 +14,7 @@ import MiniHeader from '../components/MiniHeader.astro';
   </div>
 </Base>
 <style>
-  .nf { margin-top: 64px; display: grid; gap: 14px; justify-items: start; }
+  .nf { margin-top: 24px; display: grid; gap: 14px; justify-items: start; }
   h1 { font-size: 40px; font-weight: 600; }
   p { margin: 0; }
 </style>

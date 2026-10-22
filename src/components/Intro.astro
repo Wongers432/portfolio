@@ -1,0 +1,25 @@
+---
+import { person } from '../data/cv';
+---
+<header class="intro">
+  <p class="label">{person.location}</p>
+  <h1>{person.name}</h1>
+  <p class="role">{person.role} at Oxford Brookes University</p>
+  <div class="actions">
+    <a class="btn primary" href={person.cvPdf} download>Download CV <span aria-hidden="true">↓</span></a>
+    <a class="alt" href={person.cvDocx} download>Word version</a>
+  </div>
+  <ul class="links">
+    <li><a href={`mailto:${person.email}`}>{person.email}</a></li>
+    <li><a href={person.linkedin} rel="noopener me">LinkedIn</a></li>
+    <li><a href={person.github} rel="noopener me">GitHub</a></li>
+  </ul>
+</header>
+<style>
+  .intro { padding-bottom: 8px; }
+  h1 { font-size: clamp(40px, 6vw, 56px); line-height: 1.05; font-weight: 600; letter-spacing: -0.02em; margin-top: 8px; }
+  .role { margin: 10px 0 0; font-size: 19px; color: var(--soft); }
+  .actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 24px; }
+  .alt { font-size: 14px; color: var(--muted); }
+  ul { list-style: none; margin: 18px 0 0; padding: 0; }
+</style>
