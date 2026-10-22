@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import TopBar from '../components/TopBar.astro';
+import PlayerCard from '../components/PlayerCard.astro';
+import JourneyMap from '../components/JourneyMap.astro';
+import Cartridges from '../components/Cartridges.astro';
+import QuestLog from '../components/QuestLog.astro';
+import Loadout from '../components/Loadout.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import { person } from '../data/cv';
+---
+<Base>
+  <div class="wrap">
+    <TopBar />
+    <main id="main" class="stack">
+      <PlayerCard />
+      <section class="panel">
+        <h2>Current quest</h2>
+        <p class="prose">{person.currentQuest}</p>
+      </section>
+      <JourneyMap />
+      <Cartridges />
+      <QuestLog />
+      <Loadout />
+      <Contact />
+    </main>
+    <Footer />
+  </div>
+</Base>
+<style>
+  .stack { display: flex; flex-direction: column; gap: 48px; }
+</style>

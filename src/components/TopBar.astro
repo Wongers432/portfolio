@@ -1,0 +1,22 @@
+---
+import { person } from '../data/cv';
+interface Props { home?: boolean }
+const { home = true } = Astro.props;
+const p = home ? '' : '/';
+---
+<nav class="top" aria-label="Sections">
+  <a class="save" href="/">Save 01 · {person.name} · last played {person.lastUpdated}</a>
+  <span class="links">
+    <a href={`${p}#journey`}>Journey</a>
+    <a href={`${p}#cartridges`}>Projects</a>
+    <a href={`${p}#log`}>Quest log</a>
+    <a href={`${p}#contact`}>Contact</a>
+  </span>
+</nav>
+<style>
+  .top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font: 400 12px/1.4 var(--mono); color: var(--muted); border-bottom: 1px solid var(--ink); padding-bottom: 10px; }
+  .save { color: var(--muted); text-decoration: none; }
+  .links { display: flex; flex-wrap: wrap; gap: 16px; }
+  .links a { text-decoration: none; }
+  .links a:hover { text-decoration: underline; }
+</style>

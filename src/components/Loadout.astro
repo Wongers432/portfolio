@@ -1,0 +1,38 @@
+---
+import { achievements, inventory } from '../data/cv';
+---
+<section class="two">
+  <div>
+    <h2>Achievements</h2>
+    <ul class="ach">
+      {achievements.map((a) => (
+        <li class="a"><i aria-hidden="true">{a.icon}</i><div><b>{a.title}</b><small>{a.text}</small></div></li>
+      ))}
+    </ul>
+  </div>
+  <div>
+    <h2>Inventory</h2>
+    <ul class="inv">
+      {inventory.map((s) => (
+        <li class:list={['slot', { hi: s.hi }]}><b>{s.name}</b><span>{s.note}</span></li>
+      ))}
+    </ul>
+  </div>
+</section>
+<style>
+  .two { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; }
+  ul { list-style: none; padding: 0; margin: 20px 0 0; }
+  .ach { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  .a { display: grid; grid-template-columns: 44px 1fr; gap: 12px; border: 1px solid var(--line); padding: 12px; }
+  .a i { width: 44px; height: 44px; display: grid; place-items: center; background: var(--ink); color: var(--ground); font: 800 18px/1 var(--display); font-style: normal; }
+  .a b { display: block; font: 800 16px/1.2 var(--display); }
+  .a small { display: block; color: var(--muted); font-size: 13px; line-height: 1.4; margin-top: 3px; }
+  .inv { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .slot { aspect-ratio: 1; max-width: 100%; border: 1px solid var(--line); display: flex; flex-direction: column; justify-content: space-between; padding: 10px; min-width: 0; }
+  .slot b { font: 800 17px/1.1 var(--display); overflow-wrap: anywhere; }
+  .slot span { font: 400 10px/1.2 var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .slot.hi { border-color: var(--ink); box-shadow: 3px 3px 0 var(--ink); }
+  .slot.hi span { color: var(--ink); }
+  @media (max-width: 820px) { .two { grid-template-columns: 1fr; } }
+  @media (max-width: 480px) { .slot b { font-size: 14px; } }
+</style>

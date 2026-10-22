@@ -1,0 +1,43 @@
+# portfolio
+
+Oliver Wong's CV and portfolio site. Built with [Astro](https://astro.build), hosted on Vercel.
+
+## Run it
+
+```
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # static site in dist/
+```
+
+## Edit the content
+
+Everything on the site comes from [`src/data/cv.ts`](src/data/cv.ts): profile, journey map places, projects, quest log, achievements and inventory. Change it there and the pages update.
+
+When an app is deployed, set its `liveUrl` (the "Open full app" button) and `demoUrl` (loaded in the "Try it here" phone frame on desktop) in the same file.
+
+## Deploy on Vercel
+
+1. On vercel.com, **Add New › Project**, import `Wongers432/portfolio`. Vercel detects Astro; keep the defaults.
+2. Every push to `main` redeploys. Pull requests get preview links.
+3. When you buy a domain, add it under **Settings › Domains**, then update `site` in `astro.config.mjs` and the `Canonical` line in `public/.well-known/security.txt`.
+
+## Security
+
+`vercel.json` sends a strict Content-Security-Policy (no inline scripts or styles, fonts self-hosted), HSTS, and the usual hardening headers. Check the result at [securityheaders.com](https://securityheaders.com) after deploying.
+
+If you embed an app in the "Try it here" frame, its domain must be allowed in `frame-src` here (`*.vercel.app` is allowed now), and the app itself must allow the portfolio in its own `frame-ancestors` header.
+
+`public/.well-known/security.txt` follows [RFC 9116](https://www.rfc-editor.org/rfc/rfc9116). Renew its `Expires` date each year.
+
+## Layout
+
+| Path | What it is |
+| --- | --- |
+| `src/data/cv.ts` | All the content |
+| `src/styles/global.css` | Colour tokens (light and dark), fonts, shared styles |
+| `src/components/` | One file per section of the home page |
+| `src/scripts/map.ts` | Draws the journey map |
+| `src/pages/index.astro` | Home page |
+| `src/pages/projects/[slug].astro` | A page per project with the demo frame |
+| `vercel.json` | Security headers and caching |

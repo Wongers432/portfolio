@@ -1,0 +1,32 @@
+---
+import { person } from '../data/cv';
+---
+<section class="panel" id="contact">
+  <h2>Send party invite</h2>
+  <div class="contact">
+    <span class="email">{person.email}</span>
+    <button class="btn" type="button" data-copy={person.email}>Copy email</button>
+    <a href={person.github} rel="noopener me">GitHub</a>
+    <a href={person.linkedin} rel="noopener me">LinkedIn</a>
+  </div>
+</section>
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((b) => {
+    b.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(b.dataset.copy ?? '');
+        b.textContent = 'Copied';
+      } catch {
+        const s = window.getSelection();
+        const el = b.previousElementSibling;
+        if (s && el) { const r = document.createRange(); r.selectNodeContents(el); s.removeAllRanges(); s.addRange(r); }
+        b.textContent = 'Selected, press copy';
+      }
+      setTimeout(() => (b.textContent = 'Copy email'), 2000);
+    });
+  });
+</script>
+<style>
+  .contact { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; font: 400 14px/1.4 var(--mono); margin-top: 14px; }
+  .email { user-select: all; }
+</style>

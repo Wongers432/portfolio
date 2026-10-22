@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import TopBar from '../components/TopBar.astro';
+---
+<Base title="Off the map · Oliver Wong">
+  <div class="wrap">
+    <TopBar home={false} />
+    <main id="main" class="panel">
+      <span class="lbl">Error 404 · 0.00°N 0.00°E</span>
+      <h1>Off the map</h1>
+      <p class="prose">There's nothing at this address. You've reached Null Island.</p>
+      <p><a class="btn solid" href="/">Back to the save screen</a></p>
+    </main>
+  </div>
+</Base>
+<style>
+  h1 { font-weight: 800; font-size: clamp(44px, 8vw, 88px); line-height: 0.95; color: var(--ink); margin-top: 8px; }
+  p { margin-top: 18px; }
+</style>

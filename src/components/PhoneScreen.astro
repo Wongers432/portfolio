@@ -1,0 +1,36 @@
+---
+// Drawn stand-in for each app's screen until real screenshots are added.
+interface Props { slug: string }
+const { slug } = Astro.props;
+const cells = [1,0,0,1,0, 0,1,0,0,0, 0,0,1,1,0, 0,0,0,0,1];
+---
+<div class="phone" aria-hidden="true">
+  <div class="nt"></div>
+  {slug === 'skyblock-dungeons' ? (
+    <>
+      <div class="row"><span>FLOOR VII</span><span class="rk">S+</span></div>
+      <div class="cell">{cells.map((c) => <i class={c ? 'f' : ''}></i>)}</div>
+      <div class="row"><span>Boss</span><span>Necron</span></div>
+      <div class="row"><span>Secrets</span><span>9/10</span></div>
+      <div class="row"><span>Crypts</span><span>5</span></div>
+    </>
+  ) : (
+    <>
+      <div class="row"><span>Deadlift</span><span class="rk">PLAT</span></div>
+      <div class="row"><span>Bench</span><span>Gold</span></div>
+      <div class="row"><span>Squat</span><span>Silver</span></div>
+      <div class="row"><span>Pull-up</span><span>Gold</span></div>
+      <svg viewBox="0 0 100 40"><polyline points="0,36 15,32 30,30 45,24 60,22 75,14 100,8" fill="none" stroke="currentColor" stroke-width="2" /></svg>
+    </>
+  )}
+</div>
+<style>
+  .phone { width: 132px; max-width: 100%; aspect-ratio: 9 / 19; border: 2px solid var(--text); padding: 8px; background: var(--wash); display: flex; flex-direction: column; gap: 6px; font: 400 9px/1.3 var(--mono); }
+  .nt { height: 5px; width: 40%; background: var(--text); margin: 0 auto 4px; }
+  .row { display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 3px; }
+  .rk { font: 800 13px/1 var(--display); color: var(--ink); }
+  .cell { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; }
+  .cell i { aspect-ratio: 1; border: 1px solid var(--ink); }
+  .cell i.f { background: var(--ink); }
+  svg { width: 100%; margin-top: 4px; color: var(--ink); }
+</style>
