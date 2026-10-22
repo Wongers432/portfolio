@@ -3,18 +3,21 @@
 export const person = {
   name: 'Oliver Wong',
   initials: 'OW',
-  role: 'Computer Science (Cyber Security) student',
+  role: 'Cyber security student',
   email: 'olliewong101@gmail.com',
   github: 'https://github.com/Wongers432',
   linkedin: 'https://www.linkedin.com/in/oliver-wong-315736402',
   lastUpdated: 'Oct 2026',
+  location: 'Bournemouth and Oxford, UK',
+  cvPdf: '/cv/Oliver_Wong_CV.pdf',
+  cvDocx: '/cv/Oliver_Wong_CV.docx',
   facts: [
     { k: 'Studying', v: 'BSc Computer Science (Cyber Security), Oxford Brookes' },
     { k: 'Based', v: 'Bournemouth and Oxford, UK' },
     { k: 'Certified', v: 'Google IT Automation with Python' },
   ],
   about:
-    'I am a Computer Science (Cyber Security) student at Oxford Brookes University, on a four-year degree with an industry placement year. I have hands-on experience finding and closing vulnerabilities, most recently pen-testing a launch page during an e-commerce internship at Miral in Abu Dhabi. Outside my course I build and ship my own web apps, take hardware apart to understand it, and help people get more confident with technology.',
+    'I am a Computer Science (Cyber Security) student at Oxford Brookes University, on a four-year degree with an industry placement year. I have hands-on experience finding and closing vulnerabilities, most recently pen-testing a pre-launch campaign page during an e-commerce internship at Miral in Abu Dhabi. Outside my course I build and ship my own web apps, take hardware apart to understand it, and help people get more confident with technology.',
 };
 
 export type Place = { name: string; lat: number; lon: number; tag: string; label?: boolean };
@@ -123,7 +126,8 @@ export const experience: Entry[] = [
     title: 'Miral',
     role: 'E-Commerce Intern · the group behind Ferrari World, SeaWorld Abu Dhabi, Yas Waterworld, Warner Bros. World and teamLab',
     points: [
-      'Carried out penetration testing on an upcoming Harry Potter countdown webpage, helping to identify vulnerabilities ahead of launch.',
+      'Penetration-tested a pre-launch campaign page. Used nmap and network analysis tools to identify where the page sent its payloads, then intercepted and replayed those requests at volume to test how the endpoint handled abuse.',
+      'Reported the vulnerabilities found to the team ahead of launch.',
       'Produced a competitor benchmarking presentation and presented it to the Senior Director of E-Commerce.',
       'Adapted quickly to a fast-paced international office, building commercial awareness and professional communication.',
     ],

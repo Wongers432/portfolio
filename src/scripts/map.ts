@@ -27,8 +27,8 @@ if (canvas) {
     const k = w / (lonMax - lonMin); // CSS px per degree
     const P = (lat: number, lon: number): [number, number] => [(lon - lonMin) * k, (latMax - lat) * k];
 
-    const ink = css('--ink'), line = css('--line'), wash = css('--wash'), muted = css('--muted'), text = css('--text');
-    const body = css('--body'), mono = css('--mono');
+    const ink = css('--accent'), line = css('--rule'), wash = css('--tint'), muted = css('--muted'), text = css('--text');
+    const body = css('--sans'), mono = css('--mono');
     const nameSize = narrow ? 11 : 14;
     const tagSize = narrow ? 9 : 10;
 
@@ -81,8 +81,8 @@ if (canvas) {
       const off: [number, number] =
         p.name === 'Bournemouth' ? [s + 4, nameSize + 6] : [s + 5, 4];
       ctx.font = `600 ${nameSize}px ${body}`;
-      // Phones show place names only; the list under the map carries the detail.
-      const tag = narrow ? '' : p.tag;
+      // Names only; the list under the map carries the detail.
+      const tag = '';
       const tw = Math.max(ctx.measureText(p.name).width, (ctx.font = `${tagSize}px ${mono}`, ctx.measureText(tag).width));
       // Flip labels that would run off the right edge to the left of their pin.
       let x = px + off[0] + tw > w - 4 ? px - s - 5 - tw : px + off[0];

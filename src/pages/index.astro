@@ -1,7 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import TopBar from '../components/TopBar.astro';
-import Hero from '../components/Hero.astro';
+import Sidebar from '../components/Sidebar.astro';
 import Timeline from '../components/Timeline.astro';
 import Projects from '../components/Projects.astro';
 import Skills from '../components/Skills.astro';
@@ -11,24 +10,30 @@ import Footer from '../components/Footer.astro';
 import { person, experience, education } from '../data/cv';
 ---
 <Base>
-  <div class="wrap">
-    <TopBar />
-    <main id="main" class="stack">
-      <Hero />
-      <section class="panel" id="about">
-        <h2>About</h2>
-        <p class="prose">{person.about}</p>
-      </section>
-      <Timeline id="experience" heading="Experience" items={experience} />
-      <Projects />
-      <Timeline id="education" heading="Education" items={education} />
-      <Skills />
-      <Beyond />
-      <Contact />
-    </main>
-    <Footer />
+  <div class="page layout">
+    <Sidebar />
+    <div class="content">
+      <main id="main">
+        <section class="section" id="about">
+          <h2>About</h2>
+          <p class="prose lead">{person.about}</p>
+        </section>
+        <Timeline id="experience" heading="Experience" items={experience} />
+        <Projects />
+        <Timeline id="education" heading="Education" items={education} />
+        <Skills />
+        <Beyond />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
   </div>
 </Base>
 <style>
-  .stack { display: flex; flex-direction: column; gap: 56px; }
+  .layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 80px; align-items: start; }
+  .content { min-width: 0; }
+  .lead { font-size: 19px; line-height: 1.6; color: var(--text); }
+  @media (max-width: 899px) {
+    .layout { grid-template-columns: 1fr; gap: 40px; }    .lead { font-size: 17px; }
+  }
 </style>

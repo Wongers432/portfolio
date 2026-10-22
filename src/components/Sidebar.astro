@@ -1,0 +1,52 @@
+---
+import { person } from '../data/cv';
+interface Props { home?: boolean }
+const { home = true } = Astro.props;
+const p = home ? '' : '/';
+const nav = [
+  ['about', 'About'], ['experience', 'Experience'], ['projects', 'Projects'], ['education', 'Education'],
+  ['skills', 'Skills'], ['travel', 'Beyond the CV'], ['contact', 'Contact'],
+];
+---
+<header class="side">
+  <div class="id">
+    <h1><a href="/">{person.name}</a></h1>
+    <p class="role">{person.role}<br />Oxford Brookes University</p>
+    <p class="label loc">{person.location}</p>
+  </div>
+  <div class="cv">
+    <a class="btn primary" href={person.cvPdf} download>Download CV <span aria-hidden="true">↓</span></a>
+    <a class="alt" href={person.cvDocx} download>Word version</a>
+  </div>
+  <nav aria-label="Sections">
+    <ul>{nav.map(([id, name]) => <li><a href={`${p}#${id}`}>{name}</a></li>)}</ul>
+  </nav>
+  <ul class="contact">
+    <li><a href={`mailto:${person.email}`}>{person.email}</a></li>
+    <li><a href={person.linkedin} rel="noopener me">LinkedIn</a></li>
+    <li><a href={person.github} rel="noopener me">GitHub</a></li>
+  </ul>
+</header>
+<style>
+  .side { display: flex; flex-direction: column; gap: 28px; }
+  h1 { font-size: 34px; line-height: 1.1; font-weight: 600; letter-spacing: -0.015em; }
+  h1 a { color: var(--text); text-decoration: none; }
+  .role { margin: 10px 0 0; color: var(--soft); font-size: 16px; line-height: 1.5; }
+  .loc { margin: 10px 0 0; }
+  .cv { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .alt { font-size: 14px; color: var(--muted); }
+  ul { list-style: none; margin: 0; padding: 0; }
+  nav ul { display: grid; gap: 2px; border-left: 1px solid var(--rule); }
+  nav a { display: block; padding: 3px 0 3px 14px; margin-left: -1px; border-left: 1px solid transparent; color: var(--muted); text-decoration: none; font-size: 14px; }
+  nav a:hover { color: var(--text); border-left-color: var(--text); }
+  .contact { display: grid; gap: 4px; font-size: 14px; }
+  @media (min-width: 900px) {
+    .side { position: sticky; top: 64px; }
+  }
+  @media (max-width: 899px) {
+    nav { display: none; }
+    .contact { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+    .side { gap: 20px; padding-bottom: 8px; }
+    h1 { font-size: 30px; }
+  }
+</style>

@@ -1,13 +1,13 @@
 ---
 import { person } from '../data/cv';
 ---
-<section class="panel" id="contact">
+<section class="section" id="contact">
   <h2>Contact</h2>
-  <div class="contact">
+  <p class="prose">I'm looking for placement and internship opportunities in cyber security. Email is the best way to reach me.</p>
+  <div class="row">
     <span class="email">{person.email}</span>
     <button class="btn" type="button" data-copy={person.email}>Copy email</button>
-    <a href={person.github} rel="noopener me">GitHub</a>
-    <a href={person.linkedin} rel="noopener me">LinkedIn</a>
+    <a class="btn" href={person.cvPdf} download>Download CV ↓</a>
   </div>
 </section>
 <script>
@@ -27,6 +27,6 @@ import { person } from '../data/cv';
   });
 </script>
 <style>
-  .contact { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; font: 400 14px/1.4 var(--mono); margin-top: 14px; }
-  .email { user-select: all; }
+  .row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-top: 18px; }
+  .email { font: 500 17px/1.4 var(--sans); user-select: all; margin-right: 8px; }
 </style>
