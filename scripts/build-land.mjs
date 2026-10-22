@@ -1,11 +1,11 @@
-// Turns Natural Earth land outlines (world-atlas, 1:110m) into one SVG path string in
+// Turns Natural Earth land outlines (world-atlas, 1:50m) into one SVG path string in
 // longitude/latitude units (x = lon, y = -lat) for the journey map. Run: npm run land
 import { readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { feature } from 'topojson-client';
 
 const require = createRequire(import.meta.url);
-const topo = JSON.parse(readFileSync(require.resolve('world-atlas/land-110m.json'), 'utf8'));
+const topo = JSON.parse(readFileSync(require.resolve('world-atlas/land-50m.json'), 'utf8'));
 const land = feature(topo, topo.objects.land);
 
 const r = (n) => Math.round(n * 10) / 10;
@@ -14,9 +14,23 @@ for (const f of land.features) {
   const polys = f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates;
   for (const poly of polys) {
     for (const ring of poly) {
-      // Antarctica is far outside the map's crop, so leave it out.
-      if (ring.every(([, lat]) => lat < -55)) continue;
-      d += 'M' + ring.map(([lon, lat]) => `${r(lon)} ${r(-lat)}`).join('L') + 'Z';
+      // Antarctica is outside the map's crop, and tiny islands are invisible at this size.
+      if (ring.every(([, lat]) => lat < -58) || ring.length < 8) continue;
+      // Rings that cross the 180° meridian jump from one edge to the other; start a new
+      // subpath at the jump instead of drawing a line across the whole map.
+      let seg = '';
+      let prev = null;
+      let last = null;
+      for (const [lon, lat] of ring) {
+        const jump = prev !== null && Math.abs(lon - prev) > 180;
+        prev = lon;
+        // Drop points within 0.3° of the last kept one; the map never shows finer detail.
+        if (!jump && last && Math.hypot(lon - last[0], lat - last[1]) < 0.3) continue;
+        last = [lon, lat];
+        const pt = `${r(lon)} ${r(-lat)}`;
+        seg += !seg || jump ? 'M' + pt : 'L' + pt;
+      }
+      d += seg + 'Z';
     }
   }
 }

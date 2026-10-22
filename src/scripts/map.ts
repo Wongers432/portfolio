@@ -23,7 +23,7 @@ if (canvas) {
     // Equal scale on both axes: pick the longitude window, derive the latitude window from the box shape.
     const narrow = w < 600;
     const [lonMin, lonMax] = narrow ? [-125, 145] : [-150, 150];
-    const latMax = narrow ? 68 : 78;
+    const latMax = narrow ? 76 : 84;
     const k = w / (lonMax - lonMin); // CSS px per degree
     const P = (lat: number, lon: number): [number, number] => [(lon - lonMin) * k, (latMax - lat) * k];
 
@@ -68,7 +68,7 @@ if (canvas) {
     });
     ctx.setLineDash([]);
 
-    const s = narrow ? 3 : 4;
+    const s = 3;
     places.forEach((p) => {
       const [px, py] = P(p.lat, p.lon);
       ctx.fillStyle = ink;
@@ -77,17 +77,18 @@ if (canvas) {
     places.forEach((p) => {
       if (p.label === false) return;
       const [px, py] = P(p.lat, p.lon);
-      // Scotland and Bournemouth sit almost on top of each other, so push their labels apart.
+      // Bournemouth's label goes below its pin to stay clear of Scotland's.
       const off: [number, number] =
-        p.name === 'Scotland' ? [narrow ? -nameSize * 2.5 : -nameSize * 4.6, -nameSize * 0.6] :
         p.name === 'Bournemouth' ? [s + 4, nameSize + 6] : [s + 5, 4];
       ctx.font = `600 ${nameSize}px ${body}`;
       // Phones show place names only; the list under the map carries the detail.
       const tag = narrow ? '' : p.tag;
       const tw = Math.max(ctx.measureText(p.name).width, (ctx.font = `${tagSize}px ${mono}`, ctx.measureText(tag).width));
       // Flip labels that would run off the right edge to the left of their pin.
-      const x = px + off[0] + tw > w - 4 ? px - s - 5 - tw : px + off[0];
-      const y = py + off[1];
+      let x = px + off[0] + tw > w - 4 ? px - s - 5 - tw : px + off[0];
+      let y = py + off[1];
+      // Scotland's label sits centred above its pin, over the sea, so it never covers the UK.
+      if (p.name === 'Scotland') { x = px - tw / 2; y = py - s - 6 - (tag ? tagSize + 3 : 0); }
       // A ground-coloured plate keeps labels legible over land and routes.
       ctx.fillStyle = css('--ground');
       ctx.globalAlpha = 0.85;
