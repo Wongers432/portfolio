@@ -1,0 +1,24 @@
+---
+import { places, beyond } from '../data/cv';
+---
+<section id="travel">
+  <h2>Beyond the CV</h2>
+  <figure class="map">
+    <canvas data-places={JSON.stringify(places)} role="img" aria-label={`World map with routes from ${places[0].name} to ${places.filter((p) => p.tag && p.tag !== 'home').map((p) => p.name).join(', ')}`}></canvas>
+    <figcaption>Places I've studied, worked and travelled · routes from home</figcaption>
+  </figure>
+  <ul class="list">
+    {beyond.map((b) => (<li><b>{b.title}</b><span>{b.text}</span></li>))}
+  </ul>
+</section>
+<script src="../scripts/map.ts"></script>
+<style>
+  .map { border: 1px solid var(--ink); box-shadow: 5px 5px 0 var(--ink); position: relative; aspect-ratio: 2.2 / 1; max-width: 100%; margin: 20px 0 0; background: var(--ground); }
+  .map canvas { width: 100%; height: 100%; display: block; }
+  figcaption { position: absolute; left: 10px; bottom: 8px; font: 400 11px/1 var(--mono); color: var(--muted); background: var(--ground); padding: 3px 4px; }
+  .list { list-style: none; margin: 20px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); border-top: 1px solid var(--ink); border-left: 1px solid var(--line); }
+  .list li { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 12px 14px; }
+  .list b { display: block; font: 800 16px/1.25 var(--display); }
+  .list span { color: var(--muted); font-size: 14px; }
+  @media (max-width: 600px) { .map { aspect-ratio: 2 / 1; } figcaption { display: none; } }
+</style>

@@ -15,8 +15,8 @@ const { p } = Astro.props as { p: Project };
     <TopBar home={false} />
     <main id="main" class="case">
       <div class="intro">
-        <a class="back lbl" href="/#cartridges">← All cartridges</a>
-        <span class="lbl">Cartridge · {p.kind}</span>
+        <a class="back lbl" href="/#projects">← All projects</a>
+        <span class="lbl">Project · {p.kind}</span>
         <h1>{p.name}</h1>
         <p class="lede">{p.summary}</p>
         <div class="tags">{p.tags.map((t) => <span>{t}</span>)}</div>

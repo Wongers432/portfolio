@@ -2,21 +2,21 @@
 import { projects } from '../data/cv';
 import PhoneScreen from './PhoneScreen.astro';
 ---
-<section id="cartridges">
-  <h2>Cartridges</h2>
+<section id="projects">
+  <h2>Projects</h2>
   <div class="carts">
-    {projects.map((p, i) => (
+    {projects.map((p) => (
       <article class="cart">
-        <div class="tab"></div>
         <div class="body">
           <PhoneScreen slug={p.slug} />
           <div class="info">
-            <span class="lbl">Cartridge {String.fromCharCode(65 + i)} · {p.kind}</span>
+            <span class="lbl">{p.kind}</span>
             <h3><a href={`/projects/${p.slug}`}>{p.name}</a></h3>
             <p>{p.summary}</p>
             <div class="tags">{p.tags.map((t) => <span>{t}</span>)}</div>
             <div class="btns">
-              <a class="btn solid" href={`/projects/${p.slug}`}>{p.startLabel} →</a>
+              <a class="btn solid" href={`/projects/${p.slug}`}>View project →</a>
+              {p.liveUrl && <a class="btn" href={p.liveUrl} rel="noopener">Open app ↗</a>}
               <a class="btn" href={p.repo} rel="noopener">Source ↗</a>
             </div>
           </div>
@@ -27,9 +27,7 @@ import PhoneScreen from './PhoneScreen.astro';
 </section>
 <style>
   .carts { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 20px; }
-  .cart { display: flex; flex-direction: column; }
-  .tab { height: 18px; width: 64%; margin-left: 18%; border: 1px solid var(--ink); border-bottom: 0; background: var(--ink); }
-  .body { border: 1px solid var(--ink); box-shadow: 5px 5px 0 var(--ink); padding: 18px; display: grid; grid-template-columns: 132px 1fr; gap: 18px; flex: 1; }
+  .body { border: 1px solid var(--ink); box-shadow: 5px 5px 0 var(--ink); padding: 18px; display: grid; grid-template-columns: 132px 1fr; gap: 18px; height: 100%; }
   .info { min-width: 0; display: flex; flex-direction: column; }
   h3 { font-weight: 800; font-size: 26px; line-height: 1; letter-spacing: -0.02em; margin: 4px 0 8px; }
   h3 a { text-decoration: none; }

@@ -3,19 +3,18 @@
 export const person = {
   name: 'Oliver Wong',
   initials: 'OW',
+  role: 'Computer Science (Cyber Security) student',
   email: 'olliewong101@gmail.com',
   github: 'https://github.com/Wongers432',
   linkedin: 'https://www.linkedin.com/in/oliver-wong-315736402',
   lastUpdated: 'Oct 2026',
-  chips: ['Class: Cyber Security', 'Guild: Oxford Brookes', 'Spawn: Bournemouth'],
-  // value is 0–100, the width of the bar
-  bars: [
-    { label: 'Degree', value: 25, note: 'year 1 of 4' },
-    { label: 'Solo trips', value: 100, note: '4 countries' },
-    { label: 'Apps built', value: 100, note: '2 on iPhone' },
+  facts: [
+    { k: 'Studying', v: 'BSc Computer Science (Cyber Security), Oxford Brookes' },
+    { k: 'Based', v: 'Bournemouth and Oxford, UK' },
+    { k: 'Certified', v: 'Google IT Automation with Python' },
   ],
-  currentQuest:
-    'BSc Computer Science (Cyber Security) at Oxford Brookes, with a placement year. I already have real pen-testing experience from an internship in Abu Dhabi, and I spend my spare time building games and gym apps and taking laptops apart.',
+  about:
+    'I am a Computer Science (Cyber Security) student at Oxford Brookes University, on a four-year degree with an industry placement year. I have hands-on experience finding and closing vulnerabilities, most recently pen-testing a launch page during an e-commerce internship at Miral in Abu Dhabi. Outside my course I build and ship my own web apps, take hardware apart to understand it, and help people get more confident with technology.',
 };
 
 export type Place = { name: string; lat: number; lon: number; tag: string; label?: boolean };
@@ -25,9 +24,9 @@ export const places: Place[] = [
   { name: 'Bournemouth', lat: 50.72, lon: -1.88, tag: 'home' },
   { name: 'Oxford', lat: 51.75, lon: -1.26, tag: '', label: false },
   { name: 'Abu Dhabi', lat: 24.45, lon: 54.38, tag: 'internship' },
-  { name: 'Canada', lat: 51.05, lon: -114.07, tag: 'solo' },
-  { name: 'Scotland', lat: 56.49, lon: -4.2, tag: 'solo' },
-  { name: 'China', lat: 30.57, lon: 104.07, tag: 'solo' },
+  { name: 'Canada', lat: 51.05, lon: -114.07, tag: 'backpacking, road trips' },
+  { name: 'Scotland', lat: 56.49, lon: -4.2, tag: 'backpacking, road trips' },
+  { name: 'China', lat: 30.57, lon: 104.07, tag: 'backpacking, road trips' },
 ];
 
 export type Project = {
@@ -41,7 +40,6 @@ export type Project = {
   liveUrl: string | null;
   // URL loaded in the "Try it here" frame. Usually liveUrl plus a demo flag.
   demoUrl: string | null;
-  startLabel: string;
   facts: { k: string; v: string }[];
   story: { heading: string; body: string }[];
 };
@@ -52,12 +50,11 @@ export const projects: Project[] = [
     kind: 'game',
     name: 'SkyBlock Dungeons',
     summary:
-      "A solo, offline 2D take on Hypixel SkyBlock's Catacombs for iPhone. Random dungeons, puzzles, secrets and seven bosses from Bonzo to the Wither Lords.",
+      "A single-player, offline 2D take on Hypixel SkyBlock's Catacombs for iPhone. Random dungeons, puzzles, secrets and seven bosses from Bonzo to the Wither Lords.",
     tags: ['TypeScript', 'Vite PWA', 'Vitest'],
     repo: 'https://github.com/Wongers432/skyblock-dungeons',
     liveUrl: 'https://skyblock-dungeons.vercel.app/',
     demoUrl: 'https://skyblock-dungeons.vercel.app/',
-    startLabel: 'Press start',
     facts: [
       { k: 'Stack', v: 'TypeScript, Vite, vite-plugin-pwa, Vitest' },
       { k: 'Scope', v: 'Floors 1–7, seven bosses, Master Mode M1–M7' },
@@ -88,7 +85,6 @@ export const projects: Project[] = [
     repo: 'https://github.com/Wongers432/liftboard',
     liveUrl: 'https://gt-sigma-ten.vercel.app/',
     demoUrl: 'https://gt-sigma-ten.vercel.app/',
-    startLabel: 'Load save',
     facts: [
       { k: 'Stack', v: 'HTML, CSS, JavaScript, Chart.js, service worker' },
       { k: 'Scope', v: '58 exercises, 6 rank tiers, progress graphs' },
@@ -111,72 +107,79 @@ export const projects: Project[] = [
   },
 ];
 
-export type Quest = {
-  type: 'Main quest' | 'Now' | 'Side quest';
+export type Entry = {
   when: string;
-  coords: string;
+  where?: string;
   title: string;
   role: string;
   points?: string[];
-  reward?: string;
+  current?: boolean;
 };
 
-export const quests: Quest[] = [
+export const experience: Entry[] = [
   {
-    type: 'Main quest',
     when: 'Summer 2026',
-    coords: '24.45°N 54.38°E',
-    title: 'Miral, Abu Dhabi',
-    role: 'E-Commerce Intern · Ferrari World, SeaWorld, Yas Waterworld, Warner Bros. World, teamLab',
+    where: 'Abu Dhabi, UAE',
+    title: 'Miral',
+    role: 'E-Commerce Intern · the group behind Ferrari World, SeaWorld Abu Dhabi, Yas Waterworld, Warner Bros. World and teamLab',
     points: [
-      'Pen-tested the upcoming Harry Potter countdown page and helped find vulnerabilities before launch.',
-      'Presented a competitor benchmark to the Senior Director of E-Commerce.',
-      'Travelled out alone for the two-week placement.',
+      'Carried out penetration testing on an upcoming Harry Potter countdown webpage, helping to identify vulnerabilities ahead of launch.',
+      'Produced a competitor benchmarking presentation and presented it to the Senior Director of E-Commerce.',
+      'Adapted quickly to a fast-paced international office, building commercial awareness and professional communication.',
     ],
-    reward: '+ real-world security XP',
   },
   {
-    type: 'Now',
-    when: 'Sept 2026 –',
-    coords: '51.75°N 1.26°W',
+    when: '2022 – 2025',
+    where: 'Poole, UK',
+    title: 'Absolute Music',
+    role: 'Sales Assistant',
+    points: [
+      'Supported retail and stock management systems, with a focus on data accuracy and system integrity.',
+      'Handled technical product queries, explaining complex information clearly.',
+    ],
+  },
+  {
+    when: '2023 – 2025',
+    title: 'Commercial cleaning company',
+    role: 'Cleaning Operative',
+    points: ['Worked independently to tight deadlines, solving problems on the spot.'],
+  },
+];
+
+export const education: Entry[] = [
+  {
+    when: 'Sept 2026 – present',
+    where: 'Oxford, UK',
     title: 'Oxford Brookes University',
-    role: 'BSc Computer Science (Cyber Security) · four years with a placement year',
+    role: 'BSc Computer Science (Cyber Security) · four years including an industry placement year',
+    current: true,
   },
   {
-    type: 'Side quest',
     when: '2024 – 2026',
-    coords: '50.82°N 1.57°W',
+    where: 'Brockenhurst, UK',
     title: 'Brockenhurst College',
     role: 'A-Levels · Computer Science, Business, Music Technology (Distinction*)',
-    points: ['Built a C# database module with hashed passwords and SQL injection prevention.'],
+    points: ['Key project: a C# database module with hashed passwords and SQL injection prevention, designed as a real security solution.'],
   },
   {
-    type: 'Side quest',
-    when: '2022 – 2025',
-    coords: '50.72°N 1.98°W',
-    title: 'Absolute Music, Poole',
-    role: 'Sales Assistant · stock systems, technical product questions, one-to-one computer help',
+    when: '2021 – 2023',
+    where: 'Bournemouth, UK',
+    title: 'LeAF Studio School',
+    role: 'GCSEs · eight subjects including Maths (7), English and Science · Music Technology (Distinction*)',
   },
 ];
 
-export const achievements = [
-  { icon: '✈', title: 'Lone Wanderer', text: 'Solo backpacking across Canada, Scotland and mainland China.' },
-  { icon: '✓', title: 'Before Launch', text: "Found vulnerabilities in a live brand's page before it shipped." },
-  { icon: 'Py', title: 'Certified', text: 'Google IT Automation with Python.' },
-  { icon: '♪', title: 'Distinction*', text: 'Music Technology, twice. Grade 5 piano.' },
-  { icon: 'CN', title: 'Selected', text: 'Competitive animal-care programme in China.' },
-  { icon: '★', title: 'Volunteer', text: 'Writing Festival runner two years running, foodbank hamper appeal.' },
+export const skills = [
+  { group: 'Cyber security', items: ['Penetration testing', 'Vulnerability analysis', 'Password hashing', 'SQL injection prevention', 'Ethical hacking principles'] },
+  { group: 'Languages', items: ['Python', 'C#', 'JavaScript', 'TypeScript', 'HTML and CSS', 'SQL'] },
+  { group: 'Tools and hardware', items: ['Kali Linux', 'Command line', 'Git', 'PC and laptop disassembly', 'Diagnostics'] },
+  { group: 'Certification', items: ['Google IT Automation with Python'] },
 ];
 
-// hi: true gives the slot the ink border and shadow.
-export const inventory = [
-  { name: 'Kali Linux', note: 'Offence', hi: true },
-  { name: 'Python', note: 'Certified', hi: true },
-  { name: 'C#', note: 'Secure DB', hi: true },
-  { name: 'TypeScript', note: 'Game' },
-  { name: 'JavaScript', note: 'Liftboard' },
-  { name: 'SQL', note: 'Injection-safe' },
-  { name: 'HTML/CSS', note: 'Front end' },
-  { name: 'CLI', note: 'Daily' },
-  { name: 'Screwdriver', note: 'Hardware' },
+export const beyond = [
+  { title: 'Travel', text: 'Backpacking and road trips across Canada, Scotland and mainland China.' },
+  { title: 'Animal-care programme, China', text: 'Selected for a competitive placement.' },
+  { title: 'Bournemouth Writing Festival', text: 'Runner for two consecutive years.' },
+  { title: 'Foodbank hamper appeal', text: 'Helped plan and distribute goods to the community.' },
+  { title: 'Music', text: 'Grade 5 piano, self-taught guitar, Distinction* in Music Technology.' },
 ];

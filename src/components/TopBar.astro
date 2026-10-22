@@ -5,17 +5,18 @@ const { home = true } = Astro.props;
 const p = home ? '' : '/';
 ---
 <nav class="top" aria-label="Sections">
-  <a class="save" href="/">Save 01 · {person.name} · last played {person.lastUpdated}</a>
+  <a class="save" href="/">{person.name}</a>
   <span class="links">
-    <a href={`${p}#journey`}>Journey</a>
-    <a href={`${p}#cartridges`}>Projects</a>
-    <a href={`${p}#log`}>Quest log</a>
+    <a href={`${p}#experience`}>Experience</a>
+    <a href={`${p}#projects`}>Projects</a>
+    <a href={`${p}#education`}>Education</a>
+    <a href={`${p}#skills`}>Skills</a>
     <a href={`${p}#contact`}>Contact</a>
   </span>
 </nav>
 <style>
   .top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font: 400 12px/1.4 var(--mono); color: var(--muted); border-bottom: 1px solid var(--ink); padding-bottom: 10px; }
-  .save { color: var(--muted); text-decoration: none; }
+  .save { color: var(--text); font-weight: 500; text-decoration: none; }
   .links { display: flex; flex-wrap: wrap; gap: 16px; }
   .links a { text-decoration: none; }
   .links a:hover { text-decoration: underline; }
